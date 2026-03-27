@@ -11,6 +11,10 @@ add_subdirectory(raylib)
 
 add_library(native-lib SHARED
     main.cpp
+    game/Game.cpp
+    game/Bullet.cpp
+    game/Asteroid.cpp
+    game/Player.cpp
 )
 
 target_link_libraries(native-lib

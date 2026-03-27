@@ -1,4 +1,6 @@
 #include "Player.h"
+#include <math.h>
+#include <raymath.h>
 
 void Player::Update(Vector2 inputDir) {
     if (inputDir.x != 0 || inputDir.y != 0) {

@@ -12,7 +12,7 @@ void Game::Init() {
 void Game::Update(float dt) {
     if (gameOver) return;
 
-    Vector2 joystickCenter = {100, GetScreenHeight() - 100};
+    Vector2 joystickCenter = {100, (float) GetScreenHeight() - 100};
     float radius = 80;
 
     Vector2 inputDir = {0, 0};
