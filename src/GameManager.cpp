@@ -8,6 +8,7 @@ GameManager::GameManager() : running(true), ship(400, 300) {
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     // asteroids spawn
+    // todo: make more asteroids, update their spawn logic
     for(int i=0;i<5;i++){
         asteroids.emplace_back(rand()%800, rand()%600, (rand()%100-50)/50.0f*100, (rand()%100-50)/50.0f*100, 30);
     }
@@ -39,8 +40,8 @@ void GameManager::handleInput() {
         if (event.type == SDL_QUIT) running = false;
         if (event.type == SDL_KEYDOWN) {
             switch (event.key.keysym.sym) {
-                case SDLK_LEFT: ship.rotate(-5); break;
-                case SDLK_RIGHT: ship.rotate(5); break;
+                case SDLK_LEFT: ship.rotate(-10); break;
+                case SDLK_RIGHT: ship.rotate(10); break;
                 case SDLK_SPACE: ship.shoot(); break;
             }
         }
@@ -54,13 +55,12 @@ void GameManager::update(float dt) {
         asteroids[i].update(dt);
 
         for (size_t j = 0; j < ship.bullets.size(); j++) {
-            if (asteroids[i].checkCollision(ship.bullets[j].x, ship.bullets[j].y)) {
+            if (asteroids[i].checkCollision(ship.bullets[j].x, ship.bullets[j].y)) { // if bullet crosses asteroid
                 // if collision - destroy bullet
                 ship.bullets.erase(ship.bullets.begin() + j);
                 j--;//??
 
-                // separate asteroid
-                if (asteroids[i].radius > 10) {
+                if (asteroids[i].radius > 10) {                // separate asteroid
                     float r = asteroids[i].radius / 2;
                     float vx = asteroids[i].vx;
                     float vy = asteroids[i].vy;

@@ -17,6 +17,7 @@ void Ship::update(float dt) {
 
 void Ship::render(SDL_Renderer* renderer) {
     // print triangle for ship
+    //todo: make ship look more like x-wing
     float rad = angle * M_PI / 180.0f;
     int x1 = x + cos(rad) * 20;
     int y1 = y + sin(rad) * 20;
