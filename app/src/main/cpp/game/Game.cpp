@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "raylib.h"
+#include <raymath.h>
 #include <cmath>
 
 void Game::Init() {
@@ -17,7 +18,7 @@ void Game::Update(float dt) {
 
     Vector2 inputDir = {0, 0};
 
-    if (IsTouchDown(0)) {
+    if (IsGestureDetected(0)) {
         Vector2 touch = GetTouchPosition(0);
 
         if (CheckCollisionPointCircle(touch, joystickCenter, radius)) {
@@ -26,10 +27,9 @@ void Game::Update(float dt) {
     }
 
     player.Update(inputDir);
+    Vector2 shootButton = {(float) GetScreenWidth() - 100, (float) GetScreenHeight() - 100};
 
-    Vector2 shootButton = {GetScreenWidth() - 100, GetScreenHeight() - 100};
-
-    if (IsTouchPressed(0)) {
+    if (IsGestureDetected(0)) {
         Vector2 touch = GetTouchPosition(0);
 
         if (CheckCollisionPointCircle(touch, shootButton, 60)) {
@@ -96,15 +96,15 @@ void Game::Draw() {
         a.Draw();
     }
 
-    Vector2 joystickCenter = {100, GetScreenHeight() - 100};
+    Vector2 joystickCenter = {100, (float) GetScreenHeight() - 100};
     DrawCircleV(joystickCenter, 80, DARKGRAY);
     DrawCircleV(joystickCenter, 30, GRAY);
 
-    Vector2 shootButton = {GetScreenWidth() - 100, GetScreenHeight() - 100};
+    Vector2 shootButton = {(float) GetScreenWidth() - 100, (float) GetScreenHeight() - 100};
     DrawCircleV(shootButton, 60, RED);
 
     if (gameOver) {
-        DrawText("GAME OVER", GetScreenWidth()/2 - 100, 50, 30, RED);
+        DrawText("GAME OVER", (float) GetScreenWidth()/2 - 100, 50, 30, RED);
     }
 }
 
@@ -114,13 +114,13 @@ void Game::SpawnAsteroid() {
     int side = GetRandomValue(0, 3);
 
     if (side == 0) {
-        a.position = { GetRandomValue(0, GetScreenWidth()), 0 };
+        a.position = { (float) GetRandomValue(0, (float) GetScreenWidth()), 0 };
     } else if (side == 1) {
-        a.position = { GetRandomValue(0, GetScreenWidth()), (float)GetScreenHeight() };
+        a.position = { (float) GetRandomValue(0, (float) GetScreenWidth()), (float) GetScreenHeight() };
     } else if (side == 2) {
-        a.position = { 0, GetRandomValue(0, GetScreenHeight()) };
+        a.position = { 0, (float) GetRandomValue(0, (float) GetScreenHeight()) };
     } else {
-        a.position = { (float)GetScreenWidth(), GetRandomValue(0, GetScreenHeight()) };
+        a.position = { (float) GetScreenWidth(), (float) GetRandomValue(0, (float) GetScreenHeight()) };
     }
 
     Vector2 dir = Vector2Normalize(Vector2Subtract(player.position, a.position));

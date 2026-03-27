@@ -1,7 +1,3 @@
-//
-// Created by vanya on 27.03.2026.
-//
-
 #ifndef MY_APPLICATION_ASTEROID_H
 #define MY_APPLICATION_ASTEROID_H
 

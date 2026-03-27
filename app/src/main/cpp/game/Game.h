@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "Asteroid.h"
 #include <vector>
+#include <raymath.h>
 
 class Game {
 public:
