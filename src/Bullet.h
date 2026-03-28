@@ -10,4 +10,6 @@ public:
     Bullet(float px, float py, float ang);
     void update(float dt);
     void render(SDL_Renderer* renderer);
+    float getX();
+    float getY();
 };

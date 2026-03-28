@@ -1,7 +1,11 @@
 #include "Ship.h"
 #include <cmath>
 
-Ship::Ship(float px, float py) : x(px), y(py), angle(0) {}
+Ship::Ship(float px, float py) : x {px}, y {py}, angle {0} {}
+
+std::vector<Bullet>* Ship::getBullets() {
+    return &this->bullets;
+}
 
 void Ship::rotate(float delta) {
     angle += delta;

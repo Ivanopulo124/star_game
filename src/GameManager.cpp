@@ -54,10 +54,10 @@ void GameManager::update(float dt) {
     for (size_t i = 0; i < asteroids.size(); i++) {
         asteroids[i].update(dt);
 
-        for (size_t j = 0; j < ship.bullets.size(); j++) {
+        for (size_t j = 0; j < ship.getBullets()->size(); j++) {
             if (asteroids[i].checkCollision(ship.bullets[j].x, ship.bullets[j].y)) { // if bullet crosses asteroid
                 // if collision - destroy bullet
-                ship.bullets.erase(ship.bullets.begin() + j);
+                ship.getBullets()->erase(ship.getBullets()->begin() + j);
                 j--;//??
 
                 if (asteroids[i].radius > 10) {                // separate asteroid
@@ -70,6 +70,7 @@ void GameManager::update(float dt) {
 
                 // destroy asteroid
                 asteroids.erase(asteroids.begin() + i);
+                asteroids.emplace_back(rand()%800, rand()%600, (rand()%100-50)/50.0f*100, (rand()%100-50)/50.0f*100, 30);
                 i--;
                 break;
             }
