@@ -10,7 +10,7 @@ void Bullet::update(float dt) {
 }
 
 void Bullet::render(SDL_Renderer* renderer) {
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderDrawPoint(renderer, (int)x, (int)y);
 }
 
