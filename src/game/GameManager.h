@@ -1,8 +1,8 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <vector>
-#include "Ship.h"
-#include "Asteroid.h"
+#include "../models/Ship.h"
+#include "../models/Asteroid.h"
 
 class GameManager {
 public:

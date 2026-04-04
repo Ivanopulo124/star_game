@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
         src/main.cpp
-        src/Ship.cpp
-        src/Bullet.cpp
-        src/Asteroid.cpp
-        src/GameManager.cpp
+        src/models/Ship.cpp
+        src/models/Bullet.cpp
+        src/models/Asteroid.cpp
+        src/game/GameManager.cpp
 )
 
 add_executable(star_game ${SOURCES})
