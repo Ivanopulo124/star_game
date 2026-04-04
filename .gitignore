@@ -1,3 +1,7 @@
 .idea
+.gradle
+.kotlin/*
+local.properties
 /build
+/app/*
 /cmake-build-debug

@@ -13,7 +13,29 @@ set(SOURCES
 
 add_executable(star_game ${SOURCES})
 
-include_directories(/usr/include/SDL2)
-include_directories(src)
+find_package(PkgConfig REQUIRED)
 
-target_link_libraries(star_game SDL2 SDL2_gfx)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+
+pkg_check_modules(SDL2GFX REQUIRED SDL2_gfx)
+
+target_include_directories(star_game PRIVATE
+    ${SDL2_INCLUDE_DIRS}
+    ${SDL2GFX_INCLUDE_DIRS}
+    src
+)
+
+target_link_directories(star_game PRIVATE
+    ${SDL2_LIBRARY_DIRS}
+    ${SDL2GFX_LIBRARY_DIRS}
+)
+
+target_link_libraries(star_game
+    ${SDL2_LIBRARIES}
+    ${SDL2GFX_LIBRARIES}
+)
+
+target_compile_options(star_game PRIVATE
+    ${SDL2_CFLAGS_OTHER}
+    ${SDL2GFX_CFLAGS_OTHER}
+)
